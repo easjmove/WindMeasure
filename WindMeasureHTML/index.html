@@ -1,0 +1,41 @@
+﻿<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="utf-8" />
+    <title></title>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/axios/0.21.1/axios.js"></script>
+    <script src="https://unpkg.com/vue@next"></script>
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css">
+</head>
+<body>
+    <div id="app">
+        <label>Minimum speed:</label>
+        <input v-model.number="minimumSpeed" type="number" placeholder="Minimum speed" /><br />
+        <button v-on:click="getAllDataFiltered()">Filter data serverside</button>
+        <button v-on:click="filterData(this.minimumSpeed)">Filter data clientside</button>
+        <p>Message is: {{ minimumSpeed }}</p>
+
+        <ul>
+            <li v-for="windMeasure in windMeasures">
+                ID: {{windMeasure.id}} - Direction: {{windMeasure.windDirection}} - Speed: {{windMeasure.windSpeed}}
+            </li>
+        </ul>
+
+        <table class="table-striped table-bordered table-hover">
+            <thead>
+                <tr>
+                    <th>Id</th>
+                    <th>Wind Direction</th>
+                    <th>Wind speed</th>
+                </tr>
+            </thead>
+            <tr v-for="windMeasure in windMeasures">
+                <td>{{windMeasure.id}}</td>
+                <td>{{windMeasure.windDirection}}</td>
+                <td>{{windMeasure.windSpeed}}</td>
+            </tr>
+        </table>
+    </div>
+    <script src="index.js?ver=2"></script>
+</body>
+</html>
